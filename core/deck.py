@@ -13,33 +13,26 @@ def shuffle_by_suit(deck: list[dict], swaps: int = 5000) -> list[dict]:
         first_card_index = random.randint(0,51)
         first_card =  deck[first_card_index]
         second_card_index = random.randint(0,51)
-        second_card =  deck[second_card_index]
         if first_card_index != second_card_index:
             if first_card["suit"] == "H":
                 while second_card_index%5!=0:
                     second_card_index = random.randint(0,51)
-                    second_card = deck[second_card_index]
                     if second_card_index%5==0:
                         break
             elif first_card["suit"] == "C":
                 while second_card_index%3!=0:
                     second_card_index = random.randint(0,51)
-                    second_card = deck[second_card_index]
                     if second_card_index%3==0:
                         break
             elif first_card["suit"] == "D":
                 while second_card_index%2!=0:
                     second_card_index = random.randint(0,51)
-                    second_card = deck[second_card_index]
                     if second_card_index%2==0:
                         break
             elif first_card["suit"] == "S":
                 while second_card_index%7!=0:
                     second_card_index = random.randint(0,51)
-                    second_card = deck[second_card_index]
                     if second_card_index%7==0:
                         break
         deck[first_card_index],deck[second_card_index] = deck[second_card_index],deck[first_card_index]    
     return deck
-
-print(shuffle_by_suit(build_standard_deck()))

@@ -8,11 +8,11 @@ def calculate_hand_value(hand: list[dict]) -> int:
         except:
             if card["rank"] == "J":
                 hand_counter +=10
-            if card["rank"] == "Q":
+            elif card["rank"] == "Q":
                 hand_counter +=10
-            if card["rank"] == "K":
+            elif card["rank"] == "K":
                 hand_counter +=10
-            if card["rank"] == "J":
+            elif card["rank"] == "A":
                 hand_counter +=1
     return hand_counter
 
@@ -26,7 +26,7 @@ def deal_two_each(deck: list[dict], player: dict, dealer: dict) -> None:
 def dealer_play(deck: list[dict], dealer: dict) -> bool:
     while calculate_hand_value(dealer) < 17:
         dealer["hand"].append(deck.pop(0))
-        if calculate_hand_value(dealer) > 17 and calculate_hand_value(dealer) < 21:
+        if calculate_hand_value(dealer) > 17 and calculate_hand_value(dealer) < 50:
             return True
-        elif calculate_hand_value(dealer) > 21:
+        elif calculate_hand_value(dealer) > 50:
             return False

@@ -6,17 +6,22 @@ player_2 = {"hand":[]}
 cards = build_standard_deck()
 def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None: 
     cards = shuffle_by_suit(build_standard_deck())
+    print(cards)
     deal_two_each(cards,player_1,player_2)
     print(player["hand"])
     print(dealer["hand"])
-    ask = ask_player_action()
-    while ask == "H":
-        player["hand"].append(deck.pop(0))
+    # ask = ask_player_action()
+    while ask_player_action() == "H":
+        lost = False
+        player["hand"].append(cards.pop(0))
         print(player["hand"])
         calculate = calculate_hand_value(player["hand"])
-        if calculate < 21:
-            print("sorry, you pass 21 :(, don't worry maybe next time...")
+        if calculate > 50:
+            print("sorry, you pass 50 :(, don't worry maybe next time...")
+            lost =True
             break
+    if lost == True:
+        return False
     dealer_turn = dealer_play(cards,dealer["hand"])
     if dealer_turn == True:
         player_1_score = calculate_hand_value(player["hand"])
@@ -29,5 +34,6 @@ def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
             print("we have a tie in points")
     else:
         print("you win :)")
-if __name__=="__main":
+        return True
+if __name__=="__main__":
     run_full_game(cards,player_1,player_2)
