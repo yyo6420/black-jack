@@ -6,11 +6,9 @@ player_2 = {"hand":[]}
 cards = build_standard_deck()
 def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None: 
     cards = shuffle_by_suit(build_standard_deck())
-    print(cards)
     deal_two_each(cards,player_1,player_2)
     print(player["hand"])
     print(dealer["hand"])
-    # ask = ask_player_action()
     while ask_player_action() == "H":
         lost = False
         player["hand"].append(cards.pop(0))
