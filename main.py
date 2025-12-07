@@ -1,8 +1,8 @@
 from core.game_logic import calculate_hand_value, deal_two_each, dealer_play
 from core.deck import build_standard_deck, shuffle_by_suit
 from core.player_io import ask_player_action
-player_1 = {"hand":[]} 
-player_2 = {"hand":[]} 
+player_1 = {"hand": []} 
+player_2 = {"hand": []} 
 cards = build_standard_deck()
 def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None: 
     cards = shuffle_by_suit(build_standard_deck())
@@ -16,7 +16,7 @@ def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
         calculate = calculate_hand_value(player["hand"])
         if calculate > 50:
             print("sorry, you pass 50 :(, don't worry maybe next time...")
-            lost =True
+            lost = True
             break
     if lost == True:
         return False
