@@ -3,8 +3,7 @@ from core.deck import build_standard_deck, shuffle_by_suit
 from core.player_io import ask_player_action
 player_1 = {"hand": []} 
 player_2 = {"hand": []} 
-cards = build_standard_deck()
-def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None: 
+def run_full_game(player: dict, dealer: dict) -> None: 
     cards = shuffle_by_suit(build_standard_deck())
     deal_two_each(cards,player_1,player_2)
     print(player["hand"])
@@ -34,4 +33,4 @@ def run_full_game(deck: list[dict], player: dict, dealer: dict) -> None:
         print("you win :)")
         return True
 if __name__=="__main__":
-    run_full_game(cards,player_1,player_2)
+    run_full_game(player_1,player_2)
