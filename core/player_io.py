@@ -1,4 +1,9 @@
 def ask_player_action() -> str:
-    print("here is your optins:\nH : hit a cart\nS: skip the turn")
-    answer = input("what wuld you like to do?")
+    options = ("H", "h", "S", "s")
+    answer = input("what would you like to do?")
+    while answer not in options:
+        print("Invalid key")
+        answer = input("what would you like to do?")
+        if answer in options:
+            return answer
     return answer

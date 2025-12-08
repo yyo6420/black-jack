@@ -16,17 +16,24 @@ def calculate_hand_value(hand: list[dict]) -> int:
                 hand_counter +=1
     return hand_counter
 
-def deal_two_each(deck: list[dict], player: dict, dealer: dict) -> None: 
-    player["hand"].append(deck.pop(0))
-    player["hand"].append(deck.pop(0))
-    dealer["hand"].append(deck.pop(0))
-    dealer["hand"].append(deck.pop(0))
-    return None
+def deal_two_each(cards_deck: list[dict], player: dict, dealer: dict) -> None:
+    player["hand"].append(cards_deck[0])
+    cards_deck = cards_deck[1: ]
+    dealer["hand"].append(cards_deck[0])
+    cards_deck = cards_deck[1: ]
+    player["hand"].append(cards_deck[0])
+    cards_deck = cards_deck[1: ]
+    dealer["hand"].append(cards_deck[0])
+    cards_deck = cards_deck[1: ]
+    return cards_deck
 
-def dealer_play(deck: list[dict], dealer: dict) -> bool:
-    while calculate_hand_value(dealer) < 17:
-        dealer["hand"].append(deck.pop(0))
-        if calculate_hand_value(dealer) > 17 and calculate_hand_value(dealer) < 50:
+def dealer_play(cards_deck: list[dict], dealer: dict) -> bool:
+    hand_value = calculate_hand_value(dealer["hand"])
+    while hand_value <= 17:
+        dealer["hand"].append(cards_deck[0])
+        cards_deck = cards_deck[1: ]
+        hand_value = calculate_hand_value(dealer["hand"])
+        if (hand_value > 17 and hand_value <= 21):
             return True
-        elif calculate_hand_value(dealer) > 50:
+        elif hand_value > 21:
             return False
